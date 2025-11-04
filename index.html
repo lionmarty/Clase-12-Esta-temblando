@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="noindex, nofollow" />
+        <title>Está temblando en Japón</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                font-family: "Chivo", sans-serif;
+                font-optical-sizing: auto;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 1.2;
+                background: rgb(255, 0, 0);
+                color: #222;
+                background-image: linear-gradient(rgba(255, 255, 255, 0.6) 0, rgba(255, 255, 255, 1) 95vh), url("img/fondo.jpg");
+                background-repeat: no-repeat;
+                background-size: 100% auto;
+                background-position: 0px -10vw;
+            }
+            div.container {
+                width: min(800px, 90%);
+                margin: 2rem auto;
+            }
+            h1 {
+                font-size: calc(2rem + 3vw);
+                font-weight: 900;
+                padding: 0.125rem;
+                text-align: center;
+            }
+            h2 {
+                margin: 2rem 0 1rem 0;
+                border-bottom: 1px solid #000000;
+                font-weight: 800;
+                padding: 0.25rem;
+            }
+
+            h3 {
+                margin: 0;
+                font-weight: 800;
+                padding: 0.25rem;
+            }
+
+            h5 {
+                font-size: calc(0.6rem + 0.6vw);
+                margin: 0 0 2rem 0;
+                font-weight: 800;
+                padding: 0.25rem;
+                text-align: center;
+                letter-spacing: 0.01vw;
+            }
+
+            a {
+                color: #000000;
+                font-weight: 400;
+            }
+            a:hover {
+                text-decoration: none;
+            }
+            p {
+                margin: 0.5rem 0;
+                padding: 0.25rem;
+            }
+            code {
+                font-size: 110%;
+                color: gray;
+                background: silver;
+                border-radius: 2px;
+                border: 1px solid #eee;
+            }
+            table {
+                width: 100%;
+                text-align: center;
+            }
+            table a {
+                text-decoration: none;
+            }
+            table a:hover:after {
+                content: " ⤴";
+            }
+            th,
+            td {
+                border-bottom: 1px solid black;
+                border-collapse: collapse;
+                padding: 0.25rem;
+            }
+            td {
+                font-size: 90%;
+            }
+            th,
+            td strong {
+                font-weight: 700;
+            }
+            td span {
+                color: #999;
+            }
+            th:nth-child(1),
+            th:nth-child(2),
+            td:nth-child(1),
+            td:nth-child(2) {
+                text-align: left;
+            }
+            footer {
+                border-top: 3px solid black;
+                margin: 2rem 0 0 0;
+                padding: 1rem;
+                text-align: center;
+                font-size: 80%;
+                letter-spacing: 1px;
+            }
+            .escondido {
+                display: none;
+            }
+
+            th {
+                line-height: 1.5;
+            }
+
+            th svg {
+                width: 1.5rem;
+                height: 1.5rem;
+                margin-bottom: -0.25rem;
+                margin-left: -0.25rem;
+                fill: #000000;
+            }
+
+            div.mapas {
+                width: 100%;
+                height: 400px;
+                margin: 1rem 0 3rem 0;
+                box-shadow: 0 0 4px #eee;
+            }
+
+            .leaflet-control {
+                display: none;
+            }
+
+            p.lead {
+                font-size: 120%;
+                font-weight: 200;
+            }
+
+            p em {
+                font-weight: 700;
+                font-style: normal;
+            }
+
+            p span {
+                border-radius: 6px 6px;
+                padding: 0 0.5rem 0 1.5rem;
+                background-color: #f0ff41;
+                background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M5.47,58.58H17A44.19,44.19,0,0,0,5.47,82.93Zm17.84,0h7.62l-3.56-35.8,13.4-5.66V30.65l12.06,4.8-4.06,22A31.82,31.82,0,0,0,18.39,89.08H9.53A40.25,40.25,0,0,1,23.31,58.58ZM50,61.9A27.18,27.18,0,0,1,77.18,89.08h-9a18.27,18.27,0,1,0-36.53,0H22.82A27.18,27.18,0,0,1,50,61.9Zm0,13.28a13.86,13.86,0,0,1,13.78,13.9H54.92a4.92,4.92,0,0,0-9.84,0h-9A14,14,0,0,1,50,75.18Zm8.24-16.6a35.85,35.85,0,0,0-5.29-1L57.5,32.87,45,28V15.28l4.42-1.85L69.56,18.6l3.81,40h3.32a40.25,40.25,0,0,1,13.78,30.5H81.61A31.68,31.68,0,0,0,58.24,58.58Zm24.72,0H94.53V82.93A45.16,45.16,0,0,0,83,58.58Z"></path></svg>');
+                background-position: 0.3rem 0;
+                background-size: 1rem 1rem;
+                background-repeat: no-repeat;
+            }
+
+            figure {
+                width: 80%;
+                margin: 1rem auto;
+                padding: 0.25rem;
+                border: 1px solid #eee;
+                box-shadow: 0 0 5px #fcfcfc;
+            }
+            figure img {
+                width: 100%;
+                height: auto;
+            }
+
+            figure figcaption {
+                font-size: 90%;
+                color: gray;
+                padding: 0.5rem;
+            }
+
+            .fuentes {
+                margin-top: 2rem;
+                border: 1px solid #eee;
+                background: #fafafa;
+                padding: 1rem;
+                font-size: 90%;
+                color: #444;
+            }
+        </style>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    </head>
+    <body>
+        <svg xmlns="http://www.w3.org/2000/svg" class="escondido">
+            <symbol id="location" viewBox="0 0 100 100">
+                <path d="M36.73,36.09a13,13,0,0,0,13,12.67A12.65,12.65,0,0,0,62.44,36.09a13.22,13.22,0,0,0-9.59-12.67v-18A31.37,31.37,0,0,1,81.14,36.58a30.89,30.89,0,0,1-4.55,16.36l-25,41.21H47.93L23,52.94A31.36,31.36,0,0,1,46.7,5.46v18A13.41,13.41,0,0,0,36.73,36.09Z"></path>
+            </symbol>
+
+            <symbol id="time" viewBox="0 0 100 100">
+                <path d="M15.44,49H6.33a43.68,43.68,0,0,1,87.34,0L89.24,52.1,84.56,49a34.57,34.57,0,0,0-69.12,0Zm1.84,29.77A44.16,44.16,0,0,1,6.83,56.65h9.22a33.86,33.86,0,0,0,7.63,15.62Zm5.66,5.41,6.4-6.52A34.17,34.17,0,0,0,46.19,84.2v9.22A42.43,42.43,0,0,1,22.94,84.2ZM86.53,64.64,54.31,47.91V25.16H47.05V52.22l36,18.94ZM77.55,84a43.22,43.22,0,0,1-23.61,9.47V84.2a32.11,32.11,0,0,0,17-6.77Z"></path>
+            </symbol>
+
+            <symbol id="tsunami" viewBox="0 0 100 100">
+                <path d="M91.33,88.22H8.92c-2.22,0-3.57-1.23-3.57-3a4.63,4.63,0,0,1,.61-2L17.77,62.51c5.17-9,16.36-13.9,27.06-13.9,11.57,0,17.35,5.54,17.35,10.46,0,4.3-3.32,7.13-6.77,8.12H53.07a3.49,3.49,0,0,0-3.56-3.82,3.42,3.42,0,0,0-3.32,3.45c0,3.81,4.79,7.5,13.16,7.5,7.75,0,18-3.57,24.6-9.1L94.28,83.3a3.51,3.51,0,0,1,.37,1.84A3,3,0,0,1,91.33,88.22Zm-10.21-28L52.71,10.36a3.19,3.19,0,0,0-5.66,0L26.14,47.51a36.15,36.15,0,0,1,12.67-4.06L49.88,23.89,73.37,64.36A19.72,19.72,0,0,0,81.12,60.17Z"></path>
+            </symbol>
+
+            <symbol id="magnitude" viewBox="0 0 100 100">
+                <path d="M5.47,58.58H17A44.19,44.19,0,0,0,5.47,82.93Zm17.84,0h7.62l-3.56-35.8,13.4-5.66V30.65l12.06,4.8-4.06,22A31.82,31.82,0,0,0,18.39,89.08H9.53A40.25,40.25,0,0,1,23.31,58.58ZM50,61.9A27.18,27.18,0,0,1,77.18,89.08h-9a18.27,18.27,0,1,0-36.53,0H22.82A27.18,27.18,0,0,1,50,61.9Zm0,13.28a13.86,13.86,0,0,1,13.78,13.9H54.92a4.92,4.92,0,0,0-9.84,0h-9A14,14,0,0,1,50,75.18Zm8.24-16.6a35.85,35.85,0,0,0-5.29-1L57.5,32.87,45,28V15.28l4.42-1.85L69.56,18.6l3.81,40h3.32a40.25,40.25,0,0,1,13.78,30.5H81.61A31.68,31.68,0,0,0,58.24,58.58Zm24.72,0H94.53V82.93A45.16,45.16,0,0,0,83,58.58Z"></path>
+            </symbol>
+        </svg>
+
+        <div class="container">
+            <h1>
+                Está temblando<br />
+                en Japón
+            </h1>
+            <h5>Diseño y visualización de información | Universidad de Chile</h5>
+            <p>
+                El <abbr title="United States Geological Survey">USGS</abbr> (Servicio Geológico de Estados Unidos) es responsable del
+                <a href="https://www.usgs.gov/programs/earthquake-hazards" target="_blank">Earthquake Hazards Program</a>, que monitorea e informa sobre movimientos telúricos, además de evaluar sus impactos y riesgos. Los resultados de su
+                monitoreo son compartidos mediante <a href="https://earthquake.usgs.gov/earthquakes/feed/" target="_blank">Real-time Notifications</a>, que pueden consultarse en distintos formatos.
+            </p>
+            <p>
+                Entre los compartidos está el GeoJSON Summary Format, que es actualizado a cada minuto y tiene una estructura (Output) que se explica en su página oficial. Aprovechando la
+                <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php" target="_blank">explicación de la estructura (Output)</a>, y lo ya preparado en este código fuente, que entra al <code>features:[]</code> para obtener
+                los datos, podemos visualizar lo que sigue:
+            </p>
+            <h2>En Japón</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <svg><use href="#location"></use></svg> place
+                        </th>
+                        <th>
+                            <svg><use href="#time"></use></svg> time
+                        </th>
+                        <th>
+                            <svg><use href="#magnitude"></use></svg> mag
+                        </th>
+                        <th>
+                            <svg><use href="#tsunami"></use></svg> tsunami
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="jp"></tbody>
+            </table>
+
+            <div class="mapas" id="mapaJP"></div>
+
+            <h2>Japón comparando con 2 países</h2>
+            <p>Registros sobre 3.9 M del último mes. Países elegidos: <strong>Japón / Indonesia / Chile</strong></p>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" id="viz"></svg>
+
+            <h2>Historia de terremotos en Japón</h2>
+
+            <p class="lead">
+                Japón se encuentra en una de las zonas sísmicas más activas del planeta, ubicado en el Cinturón de Fuego del Pacífico donde convergen cuatro placas tectónicas. A lo largo de su historia, el archipiélago ha experimentado algunos de los terremotos más devastadores registrados, eventos que han marcado profundamente su cultura de prevención y resiliencia ante desastres naturales.
+            </p>
+
+            <figure>
+                <img src="https://static.emol.cl/emol50/Fotos/2023/09/01/file_20230901125615.jpg" />
+                <figcaption>Incendios tras el Gran Terremoto de Kanto en Tokio, 1923. Fuente: emol.com</figcaption>
+            </figure>
+
+            <p>El 1 de septiembre de 1923, el <em>Gran Terremoto de Kanto</em> de <span>7.9</span> en magnitud sacudió la región que alberga a Tokio y Yokohama. El sismo ocurrió minutos antes del mediodía, justo cuando miles de hogares preparaban sus alimentos en cocinas con fuego abierto. Los incendios resultantes, avivados por los fuertes vientos de un tifón que pasaba por la zona, devastaron ciudades enteras. <em>Más de 100,000 personas perdieron la vida</em>, convirtiéndolo en el terremoto más mortífero en la historia de Japón.</p>
+
+            <p>El 17 de enero de 1995, la ciudad portuaria de Kobe sufrió el impacto de un terremoto de <span>6.9</span> que dejó aproximadamente <em>6,000 fallecidos y más de 415,000 heridos</em>. La fuerza del sismo fue tal que los pilares del puente Akashi Kaikyo, aún en construcción, se separaron casi un metro. Este evento marcó el establecimiento del Día del Voluntario de Respuesta a Desastres en Japón, celebrado cada 17 de enero.</p>
+
+            <figure>
+                <img src="https://preview.redd.it/7c2fopdzxg371.jpg?auto=webp&s=384c10aa31f0c140a5c768bc24bc43296443e7ca" />
+                <figcaption>Autopista colapsada tras el terremoto de Kobe, 1995. Fuente: Reddit</figcaption>
+            </figure>
+
+            <p>El 11 de marzo de 2011, Japón enfrentó su mayor desafío: el <em>Terremoto de Tohoku</em> con magnitud <span>9.1</span>, el más fuerte jamás registrado en el país y uno de los cuatro más potentes de la historia mundial. El sismo desplazó la isla principal de Honshu <em>2.4 metros hacia el este</em> y la península de Oshika se hundió 120 centímetros. El tsunami resultante alcanzó alturas de hasta 40 metros, penetrando 10 kilómetros tierra adentro en algunas zonas.</p>
+
+            <figure>
+                <img src="https://www.gob.mx/cms/uploads/article/main_image/106085/da_os2_Tohoku_2011.jpg" />
+                <figcaption>Devastación en Sukuiso tras el tsunami de Tohoku, marzo 2011. Fuente: Gob MX</figcaption>
+            </figure>
+
+            <p>El desastre de 2011 causó <em>casi 20,000 víctimas fatales</em> y provocó el accidente nuclear de Fukushima, donde el fallo en el sistema de enfriamiento debido a la pérdida de energía eléctrica resultó en la liberación de material radiactivo. Las pérdidas económicas superaron los 280 mil millones de dólares, las más altas de cualquier catástrofe natural registrada desde 1970. A pesar de la magnitud del evento, el número relativamente bajo de víctimas en comparación con terremotos históricos anteriores demostró la eficacia de los estrictos códigos de construcción antisísmica de Japón.</p>
+
+            <figure>
+                <img src="https://cna.us.es/images/stories/CNA/accidente%20fukushimaweb.jpg" />
+                <figcaption>Planta nuclear de Fukushima Daiichi tras el accidente, marzo 2011. Fuente: CNA</figcaption>
+            </figure>
+
+            <p>La experiencia sísmica de Japón ha resultado en una de las culturas de prevención más avanzadas del mundo. Cada año, el 1 de septiembre se celebra el Día de la Prevención de Desastres, donde se realizan simulacros masivos y se promueve la educación sobre preparación ante emergencias. Los edificios modernos japoneses están diseñados con tecnología antisísmica de última generación, incluyendo pilares amortiguados y enormes cimientos de hormigón que permiten que las estructuras se balanceen sin colapsar. Para conocer más sobre la actividad sísmica en otros paises puedes explorar los trabajos sobre <a href="#">Perú</a>, <a href="https://belenporras.github.io/Esta-temblando-en-Turquia/">Turquia</a> y <a href="#">Canadá</a>.</p>
+
+            <div class="fuentes">
+                <h3>Fuentes:</h3>
+                <p>Gran Terremoto de Kanto: <a href="https://es.wikipedia.org/wiki/Gran_terremoto_de_Kant%C5%8D" target="_blank">Wikipedia - Gran terremoto de Kantō</a></p>
+                <p>Terremoto de Kobe 1995: <a href="https://www.reddit.com/r/CatastrophicFailure/comments/8fhaq9/the_aftermath_of_an_earthquake_in_kobe_japan_1995/?tl=es-419" target="_blank">Reddit - Terremoto de Kōbe 1995</a></p>
+                <p>Terremoto de Tohoku y tsunami 2011: <a href="https://es.wikipedia.org/wiki/Terremoto_y_tsunami_de_Japón_de_2011" target="_blank">Wikipedia - Terremoto y tsunami de Japón de 2011</a></p>
+                <p>Accidente nuclear de Fukushima: <a href="https://cna.us.es/index.php/es/noticias/notas-de-prensa/432-impacto-del-accidente-nuclear-de-fukushima-2011-en-espana" target="_blank">CNA - Impacto del accidente nuclear de Fukushima</a></p>
+                <p>Datos sísmicos en tiempo real: <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson" target="_blank">USGS GeoJSON Feed</a></p>
+            </div>
+
+            <footer>
+                <p>Desarrollado por <a href="#" target="_blank">Martina Muñoz</a> &copy; 2025</p>
+            </footer>
+        </div>
+        <script>
+            const centerJapan = [36.2048, 138.2529];
+
+            fetch("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson")
+                .then(response => response.json())
+                .then(data => {
+                    const japanQuakes = data.features.filter(quake => {
+                        const place = quake.properties.place.toLowerCase();
+                        return (place.includes("japan") || place.includes("japón")) &&
+                               quake.properties.mag >= 4.0;
+                    });
+
+                    japanQuakes.sort((a, b) => b.properties.time - a.properties.time);
+
+                    const tbody = document.getElementById("jp");
+                    japanQuakes.forEach(quake => {
+                        const props = quake.properties;
+                        const date = new Date(props.time);
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td><a href="${props.url}" target="_blank">${props.place}</a></td>
+                            <td><span>${date.toLocaleDateString('es-CL')}</span> ${date.toLocaleTimeString('es-CL')}</td>
+                            <td><strong>${props.mag.toFixed(1)}</strong></td>
+                            <td>${props.tsunami === 1 ? "⚠️" : ""}</td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+
+                    const map = L.map("mapaJP").setView(centerJapan, 5);
+                    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                        attribution: '© OpenStreetMap'
+                    }).addTo(map);
+
+                    japanQuakes.forEach(quake => {
+                        const coords = quake.geometry.coordinates;
+                        L.circleMarker([coords[1], coords[0]], {
+                            radius: quake.properties.mag * 1.5,
+                            fillColor: "#d32f2f",
+                            color: "#000",
+                            weight: 1,
+                            fillOpacity: 0.6
+                        })
+                        .bindPopup(`<b>M ${quake.properties.mag.toFixed(1)}</b><br>${quake.properties.place}`)
+                        .addTo(map);
+                    });
+
+                    const allQuakes = data.features.filter(q => q.properties.mag >= 4.0);
+
+                    const indonesiaQuakes = allQuakes.filter(q => {
+                        const place = q.properties.place.toLowerCase();
+                        return place.includes("indonesia") || place.includes("java") || 
+                               place.includes("sumatra") || place.includes("sulawesi");
+                    }).length;
+
+                    const chileQuakes = allQuakes.filter(q =>
+                        q.properties.place.toLowerCase().includes("chile")
+                    ).length;
+
+                    const japanCount = japanQuakes.length;
+
+                    const maxCount = Math.max(japanCount, indonesiaQuakes, chileQuakes);
+                    const svg = document.getElementById("viz");
+
+                    const countries = [
+                        { name: "Japón", count: japanCount, x: 20, color: "#e74c3c" },
+                        { name: "Indonesia", count: indonesiaQuakes, x: 50, color: "#3498db" },
+                        { name: "Chile", count: chileQuakes, x: 80, color: "#2ecc71" }
+                    ];
+
+                    countries.forEach(c => {
+                        const r = Math.sqrt(c.count / maxCount) * 15;
+                        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                        circle.setAttribute("cx", c.x);
+                        circle.setAttribute("cy", "25");
+                        circle.setAttribute("r", r);
+                        circle.setAttribute("fill", c.color);
+                        circle.setAttribute("opacity", "0.7");
+                        svg.appendChild(circle);
+
+                        const text1 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                        text1.setAttribute("x", c.x);
+                        text1.setAttribute("y", "45");
+                        text1.setAttribute("text-anchor", "middle");
+                        text1.setAttribute("font-size", "3");
+                        text1.setAttribute("fill", "#333");
+                        text1.textContent = c.name;
+                        svg.appendChild(text1);
+
+                        const text2 = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                        text2.setAttribute("x", c.x);
+                        text2.setAttribute("y", "48");
+                        text2.setAttribute("text-anchor", "middle");
+                        text2.setAttribute("font-size", "2.5");
+                        text2.setAttribute("fill", "#666");
+                        text2.textContent = `${c.count} sismos`;
+                        svg.appendChild(text2);
+                    });
+                })
+                .catch(error => console.error("Error:", error));
+        </script>
+    </body>
+</html>
